@@ -1,0 +1,58 @@
+// Get user data providing JWT token.
+GET http://localhost:5000/api/auth/user/ HTTP/1.1
+content-type: application/json
+//x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxYzE2YTFmYjViMTgzMDdjMDJkMyIsImlhdCI6MTYxODk0Mjk5OCwiZXhwIjoxNjE4OTQ2NTk4fQ.UfNarl4kJhtULNYND8rbg7nmKvP1KqjlqDNPhqCar7w
+//x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxZDAwYTFmYjViMTgzMDdjMDJkNCIsImlhdCI6MTYxODk0MzIzMiwiZXhwIjoxNjE4OTQ2ODMyfQ._dcS4beOWYt8y1bRjegAoeK963oeJZmK4SpCFiW1V2w
+//x-auth-token: invalid-token
+x-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxZDAwYTFmYjViMTgzMDdjMDJkNCIsImlhdCI6MTYxODk1NjAwOSwiZXhwIjoxNjE4OTU5NjA5fQ.AIgjMglLjczHj9YXDTeBKOLm_qcsAOHRqyNwR9vuqzQ
+
+###
+
+// Register new user. Required fields: name, email, password. Other fields will be ignored.
+POST http://localhost:5000/api/auth/register HTTP/1.1
+content-type: application/json
+
+// JWT token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxYzE2YTFmYjViMTgzMDdjMDJkMyIsImlhdCI6MTYxODk0Mjk5OCwiZXhwIjoxNjE4OTQ2NTk4fQ.UfNarl4kJhtULNYND8rbg7nmKvP1KqjlqDNPhqCar7w
+{
+    "name": "test",
+    "password": "test",
+    "email": "test@tst.io.co.pl",
+    "additonal-field": "unnecessary-field"
+} 
+
+###
+
+POST http://localhost:5000/api/auth/register HTTP/1.1
+content-type: application/json
+
+// JWT token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxZDAwYTFmYjViMTgzMDdjMDJkNCIsImlhdCI6MTYxODk0MzIzMiwiZXhwIjoxNjE4OTQ2ODMyfQ._dcS4beOWYt8y1bRjegAoeK963oeJZmK4SpCFiW1V2w
+{
+    "name": "test2",
+    "password": "test2",
+    "email": "test2@tst.io.co.pl"
+} 
+
+###
+
+// Login user. Required valid credentials: email and password.
+POST http://localhost:5000/api/auth/login HTTP/1.1
+content-type: application/json
+
+// JWT token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxZDAwYTFmYjViMTgzMDdjMDJkNCIsImlhdCI6MTYxODk0MzIzMiwiZXhwIjoxNjE4OTQ2ODMyfQ._dcS4beOWYt8y1bRjegAoeK963oeJZmK4SpCFiW1V2w
+// JWT token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxZDAwYTFmYjViMTgzMDdjMDJkNCIsImlhdCI6MTYxODk1NjAwOSwiZXhwIjoxNjE4OTU5NjA5fQ.AIgjMglLjczHj9YXDTeBKOLm_qcsAOHRqyNwR9vuqzQ
+{
+    "email": "test2@tst.io.co.pl",
+    "password": "test2",
+    "additional-field": "unnecessary-field"
+} 
+
+###
+
+POST http://localhost:5000/api/auth/login HTTP/1.1
+content-type: application/json
+
+// JWT token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwN2YxYzE2YTFmYjViMTgzMDdjMDJkMyIsImlhdCI6MTYxODk0Mzc4MSwiZXhwIjoxNjE4OTQ3MzgxfQ.Xy0No-w3OFPFxeKFFqCxMpKKy8pQwFxAozmvLojZ9dY
+{
+    "email": "test@tst.io.co.pl",
+    "password": "test"
+} 

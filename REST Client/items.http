@@ -1,0 +1,26 @@
+GET http://localhost:5000/api/items/ HTTP/1.1
+content-type: application/json
+
+###
+
+POST http://localhost:5000/api/items/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "milk"
+} 
+
+###
+
+POST http://localhost:5000/api/items/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "eggs"
+} 
+
+###
+
+DELETE http://localhost:5000/api/items/6079eb174cba746f4484f801 HTTP/1.1
+content-type: application/json
+
